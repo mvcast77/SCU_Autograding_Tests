@@ -1,0 +1,30 @@
+name: Autograde Test Sandbox
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  behavior_test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Make test script executable
+        run: chmod +x tests/behavior_test.sh
+
+      - name: Run test script
+        run: ./tests/behavior_test.sh
+
+  linting_test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Make test script executable
+        run: chmod +x tests/linting_test.sh
+
+      - name: Run other test script
+        run: ./tests/linting_test.sh
