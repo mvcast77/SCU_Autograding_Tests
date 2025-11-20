@@ -28,4 +28,12 @@ Back to [top](#scu_autograding_tests)
 
 ## Keyword
 
+Keyword matching (where we look for some specific usage of a term in the code) relies heavily on sed.
+
+sed is a non-interactive stream editing linux utility, whose main purpose is to filter and replace text in a stream. Note that a stream can also be a file, not just whatever you pipe in. sed with the -n flag prints only matched lines. Using the -E flag allows sed to use POSIX style extended regular expressions.
+
+In the above example, the first command demonstrates sed's pattern matching utility by looking for a predefined MACRO name. The second command matches for the same pattern, but also includes an inverse condition, so that we capture just the usage of the macro and not the definition of it.
+
+After this, things get more complicated. We now look for the undefined name of a macro, using the '#define' lines as an anchor for our search (the name of the macro will always come after). We use ...
+
 Back to [top](#scu_autograding_tests)
