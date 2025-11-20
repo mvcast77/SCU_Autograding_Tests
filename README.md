@@ -24,7 +24,15 @@ Back to [top](#scu_autograding_tests)
 
 ## Linting
 
-Not yet written.
+The example shown in linting_test.sh only checks for indentation, and is a fantastically weak linter. This code is most liable to change since there exist a variety of tools that can do linting for c files. This is true in the other cases, but we usually ignore other methods since they would require installing packages into the newly created ubuntu container. Remember that we want all these tests to be as lightweight and basic as possible, since we have a limited amount of compute time from GitHub Classroom, before we have to start paying for it.
+
+The example above will compare a student submission with a perfectly indented version of the student submission, and use diff to find any differences in indentation that may arise. [diff](https://man7.org/linux/man-pages/man1/diff.1.html) is another linux utility, meant to compare two files, line by line. The only thing we need is a perfectly indented version of the student submission.
+
+The way we get this, is by applying the '=' formatting operator to every line of the newly created copy. '=' will format the line its applied to according to the C indenting rules (student submissions are in C), specified in [filetype.vim](https://github.com/vim/vim/blob/master/runtime/filetype.vim). The commands "gg=G" and ":wq" are written in commands.keys, and are applied to the new file with:
+
+	vim -s commands.keys <new_file>
+
+We now have a perfectly indented file, that we can perform a diff on. The results of this inform whether the test passed or failed. Instead of being used as a particularly punishing grading script, this test is envisioned as a sanity check for students to see whether their code is indented as well as possible, before final submission.
 
 Back to [top](#scu_autograding_tests)
 
