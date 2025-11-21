@@ -44,7 +44,7 @@ Keyword matching (where we look for some specific usage of a term in the code) r
 
 sed is a non-interactive stream editing linux utility, whose main purpose is to filter and replace text in a stream. Note that a stream can also be a file, not just whatever you pipe in. sed with the -n flag prints only matched lines. Using the -E flag allows sed to use POSIX style extended regular expressions.
 
-In the keyword_test.sh example, the first command demonstrates sed's pattern matching utility by looking for a predefined MACRO name. The second command matches for the same pattern, but also includes an inverse condition, so that we capture just the usage of the macro and not the definition of it.
+In the keyword_test.sh example, the first command demonstrates sed's pattern matching utility by looking for a predefined MACRO name. The second command matches for the same pattern, and the commented version also includes an inverse condition, so that we capture just the usage of the macro and not the definition of it. This doesn't work with all versions of sed, so the uncommented version replicates this behavior by using pipes and multiple sed expressions instead of a compound command.
 
 After this, things get more complicated. We now look for the undefined name of a macro, using the '#define' lines as an anchor for our search (the name of the macro will always come after). We use 'capture groups' (Shown by placing parentheses around the pattern) to replace the output stream with what we captured. Since sed is designed as a pattern match and replace tool, we're both replacing the line we read with a separate string, and using the capture group to supply our replacement string, with the pattern we matched originally.
 
